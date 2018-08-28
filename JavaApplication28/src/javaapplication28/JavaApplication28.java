@@ -16,7 +16,7 @@ public class JavaApplication28 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        stuff goes here! 
+        System.out.print("Git Success! ");
         
         
         

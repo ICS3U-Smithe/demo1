@@ -27,6 +27,7 @@ public class HelloWorld2 {
         System.out.println("Hello, " + name + ", nice to meet you. ");
         
         askAge();
+        askFavouriteColour();
     }
     
     /**
@@ -39,13 +40,25 @@ public class HelloWorld2 {
         //String age = s.nextLine();
         
         //we should read it in as an int
-        int age = s.nextInt();
+        //int age = s.nextInt();
         
         //alternatively we could convert a String into an int
-        //int age = Integer.parseInt(s.nextLine());
+        int age = Integer.parseInt(s.nextLine());
         
         System.out.println("Wow, " + age + " years old, crazy! ");
         
     }
     
+    public static void askFavouriteColour(){
+        System.out.println("What is your favourite colour? ");
+        
+        //we can add another s.nextLine() to account for the way
+        //s.nextInt works
+        //s.nextLine();
+        
+        String colour = s.nextLine();
+        
+        System.out.println("Wow, my favourite colour is also " + colour);
+        
+    }
 }

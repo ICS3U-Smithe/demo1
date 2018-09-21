@@ -15,8 +15,7 @@ public class SquareCalculator {
     private double area;
     
     /**
-     * Creates a SquareCalculator object
-     * with the given side length. 
+     * Creates a SquareCalculator object with the given side length. 
      * 
      * @param sideLength the side length of the square
      */
@@ -39,7 +38,7 @@ public class SquareCalculator {
     }
     
     /**
-     * sets the side length of the square. 
+     * sets the side length of the square. It also updates the other values 
      * 
      * @param sideLength the side length of the square
      */

@@ -34,6 +34,14 @@ public class ShapeCalculatorTester {
         //side length of 5.0
         System.out.println("My square's side length is: " + s1.getSideLength());
         
+        //we can update one of the instance variables of our objects and 
+        //all of the properties should update accordingly. 
+        s1.setSideLength(52); 
+        System.out.println("My square's side length is: " + s1.getSideLength());
+        System.out.println("My square's perimeter is: " + s1.getPerimeter());
+        System.out.println("My square's area is: " + s1.getArea());
+        System.out.println(s1.toString());
+        
     }
     
 }

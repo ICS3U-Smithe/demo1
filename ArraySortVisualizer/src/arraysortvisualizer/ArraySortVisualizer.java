@@ -40,6 +40,7 @@ public class ArraySortVisualizer extends Application {
     Rectangle[] bars = new Rectangle[100];
 
     Timeline bubbleSortTimeline;
+    Timeline bogoTimeline;
     int i = 0;
     int j = 1;
     boolean sorted  = false;
@@ -66,7 +67,9 @@ public class ArraySortVisualizer extends Application {
         //bubbleSort3();
         //bubbleSortNatural();
         
-        mergeSort();
+        //mergeSort();
+        
+        bogoSort();
      
     }
 
@@ -224,42 +227,76 @@ public class ArraySortVisualizer extends Application {
     
     private int[] mergeSort(int[] arr){
         int n = arr.length;
-        if(n == 1 || n == 0)
+        if(n == 1)
             return arr;
         int[] arr1 = new int[n/2];
         int[] arr2 = new int[n-n/2];
         
         int i = 0;
         
-        for(int i1 = 0; i < arr1.length; i1++){
+        for(int i1 = 0; i1 < arr1.length; i1++){
             arr1[i1] = arr[i++];
         }
         
-        for(int i2 = 0; i < arr2.length; i2++){
-            arr1[i2] = arr[i++];
+        for(int i2 = 0; i2 < arr2.length; i2++){
+            arr2[i2] = arr[i++];
         }
         
         return merge(mergeSort(arr1), mergeSort(arr2));
     }
     
+    /**
+     * Merges two sorted arrays into one. 
+     * 
+     * @param arr1 a sorted array of integers
+     * @param arr2 a second sorted array of integers
+     * @return a sorted array with the contents of the two supplied arrays. 
+     */
     private int[] merge(int[] arr1, int[] arr2){
         int[] result = new int[arr1.length + arr2.length];
         int i1 = 0;
         int i2 = 0;
         for(int i = 0; i < result.length; i++){
-            if(i1 == arr1.length){
-                result[i] = arr1[i2++];
-            }else if(i2 == arr2.length){
+            if(i1 == arr1.length){ //first array is empty
+                result[i] = arr2[i2++];
+            }else if(i2 == arr2.length){ //second array is empty
                 result[i] = arr1[i1++];
-            }else if(arr1[i1] < arr2[i2]){
+            }else if(arr1[i1] < arr2[i2]){ 
                 result[i] = arr1[i1++];
             }else{
-                result[i] = arr1[i2++];
+                result[i] = arr2[i2++];
             }
         }
         return result;
     }
+    
+    /**
+     * This sorting algorithm just randomly shuffles the array until it ends 
+     * up 
+     */
+    private void bogoSort(){
+        
+        bogoTimeline = new Timeline(new KeyFrame(Duration.millis(50), new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                scrambleData();
+                displayData();
+                if(isSorted()){
+                    bogoTimeline.stop();
+                }
+            }
+        }));
+        bogoTimeline.setCycleCount(Timeline.INDEFINITE);
+        bogoTimeline.play();
+    }
 
+    private boolean isSorted(){
+        for(int i = 0; i < data.length - 1; i++)
+            if(data[i] > data[i+1])
+                return false;
+        return true;
+    }
+    
     /**
      * @param args the command line arguments
      */
